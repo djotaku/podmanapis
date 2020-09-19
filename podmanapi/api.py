@@ -1,8 +1,7 @@
-import socket
-import os
+import json
 
-client = socket.socket(socket.AF_UNIX)
-client.connect("/run/podman/podman.sock")
-send_me = "http://d/v1.0.0/libpod/info".encode('utf-8')
-response = client.send(send_me)
-print(response)
+import requests_unixsocket
+
+session = requests_unixsocket.Session()
+r = session.get('http+unix://%2Frun%2Fpodman%2Fpodman.sock/v2.0.0/libpod/info')
+print(json.dumps(r))
