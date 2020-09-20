@@ -23,4 +23,4 @@ def image_exists(container: str) -> str:
 
     :returns: JSON with information
     """
-    return session.get(f"{api_endpoint}/{container}/exists").json()
+    return session.get(f"{api_endpoint}/images/{container}/exists").json()
