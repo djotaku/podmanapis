@@ -73,7 +73,7 @@ def container_exists(container: str) -> str:
 
     :returns: JSON results
     """
-    response = session.post(f"{api_endpoint}/containers/{container}/exists")
+    response = session.get(f"{api_endpoint}/containers/{container}/exists")
     if response.status_code == 204:
         return "{'response': 204}"
     else:
