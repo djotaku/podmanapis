@@ -13,7 +13,7 @@ def list_images():
 
 
 if __name__ == "__main__":
-    get_info()
+    print(get_info())
     list_images()
 
 # http://docs.podman.io/en/latest/_static/api.html
