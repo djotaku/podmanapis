@@ -45,15 +45,15 @@ def health_check(container: str) -> str:
     return session.get(f"{api_endpoint}/containers/{container}/healthcheck").json()
 
 
-def delete_container():
+def delete():
     pass
 
 
-def attach_to_container():
+def attach():
     pass
 
 
-def container_changes():
+def changes():
     pass
 
 
@@ -61,11 +61,11 @@ def checkpoint():
     pass
 
 
-def copy_files_into_container():
+def copy_files_into():
     pass
 
 
-def container_exists(container: str) -> str:
+def exists(container: str) -> str:
     """Determine whether container exists by name or ID.
 
     :param container: the name or ID of the container
@@ -82,3 +82,20 @@ def container_exists(container: str) -> str:
 
 def export_container():
     pass
+
+
+def initialize():
+    pass
+
+
+def inspect(container: str, size: bool = False) -> str:
+    """Return low-level information about a container.
+
+    :param container: the name or ID of a container
+    :type container: str
+    :param size: (optional, default = False) If True, display filesystem usage
+    :type size: bool
+
+    :returns: JSON results
+    """
+    return session.get(f"{api_endpoint}/containers/{container}/json", params={"size": size}).json()
