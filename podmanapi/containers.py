@@ -1,7 +1,6 @@
 """API functions related to containers."""
 
 import requests_unixsocket
-from typing import List
 
 from podmanapi import api_endpoint
 
