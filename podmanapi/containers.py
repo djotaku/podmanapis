@@ -35,7 +35,7 @@ def commit(container: str, **kwargs) -> str:
 
 
 def health_check(container: str) -> str:
-    """Execute the defined heatlcheck and return information about the results.
+    """Execute the defined healthcheck and return information about the results.
 
     :param container: the name or ID of the container
     :type container: str
@@ -43,3 +43,42 @@ def health_check(container: str) -> str:
     :returns: JSON results
     """
     return session.get(f"{api_endpoint}/containers/{container}/healthcheck").json()
+
+
+def delete_container():
+    pass
+
+
+def attach_to_container():
+    pass
+
+
+def container_changes():
+    pass
+
+
+def checkpoint():
+    pass
+
+
+def copy_files_into_container():
+    pass
+
+
+def container_exists(container: str) -> str:
+    """Determine whether container exists by name or ID.
+
+    :param container: the name or ID of the container
+    :type container: str
+
+    :returns: JSON results
+    """
+    response = session.post(f"{api_endpoint}/containers/{container}/exists")
+    if response.status_code == 204:
+        return "{'response': 204}"
+    else:
+        return response.json()
+
+
+def export_container():
+    pass
