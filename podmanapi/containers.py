@@ -1,7 +1,6 @@
 """API functions related to containers."""
 
 import requests_unixsocket
-import json
 
 from podmanapi import api_endpoint
 
@@ -99,3 +98,88 @@ def inspect(container: str, size: bool = False) -> str:
     :returns: JSON results
     """
     return session.get(f"{api_endpoint}/containers/{container}/json", params={"size": size}).json()
+
+
+def kill():
+    pass
+
+
+def logs(container: str, **kwargs) -> str:
+    """Get stdout and stderr logs from a container."""
+    pass
+
+
+def mount():
+    pass
+
+
+def pause():
+    pass
+
+
+def resize_tty():
+    pass
+
+
+def restart():
+    pass
+
+
+def restore():
+    pass
+
+
+def start():
+    pass
+
+
+def stats():
+    pass
+
+
+def stop():
+    pass
+
+
+def list_processes():
+    pass
+
+
+def umount():
+    pass
+
+
+def unpause():
+    pass
+
+
+def wait():
+    pass
+
+
+def create():
+    pass
+
+
+def list_containers():
+    pass
+
+
+def delete_stopped():
+    pass
+
+
+def show_mounted():
+    pass
+
+
+def generate_kubernetes_yaml():
+    pass
+
+
+def generate_systemd_unites():
+    pass
+
+
+def play_kubernetes_yaml():
+    pass
