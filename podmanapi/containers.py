@@ -29,4 +29,4 @@ def commit(container: str, **kwargs) -> str:
     if response.status_code == 200:
         return "No Error"
     else:
-        return response.json()
+        return response
