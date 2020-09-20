@@ -1,7 +1,7 @@
 import requests_unixsocket
 
 session = requests_unixsocket.Session()
-api_endpoint = "'http+unix://%2Frun%2Fpodman%2Fpodman.sock/v2.0.0/libpod/"
+api_endpoint = "http+unix://%2Frun%2Fpodman%2Fpodman.sock/v2.0.0/libpod"
 
 
 def get_info():
@@ -15,3 +15,5 @@ def list_images():
 if __name__ == "__main__":
     get_info()
     list_images()
+
+# http://docs.podman.io/en/latest/_static/api.html
