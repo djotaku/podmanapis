@@ -1,7 +1,17 @@
-import json
-
 import requests_unixsocket
 
 session = requests_unixsocket.Session()
-r = session.get('http+unix://%2Frun%2Fpodman%2Fpodman.sock/v2.0.0/libpod/info')
-print(json.dumps(r))
+api_endpoint = "'http+unix://%2Frun%2Fpodman%2Fpodman.sock/v2.0.0/libpod/"
+
+
+def get_info():
+    return session.get(f"{api_endpoint}/info").json()
+
+
+def list_images():
+    return session.get(f"{api_endpoint}/images/json").json()
+
+
+if __name__ == "__main__":
+    get_info()
+    list_images()
