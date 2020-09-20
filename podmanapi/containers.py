@@ -22,14 +22,24 @@ def commit(container: str, **kwargs) -> str:
     pause: (bool) pause the container before committing it.
     changes: (List[str]) instructions to apply while committing in Dockerfile format (i.e. "CMD=/bin/foo")
     format: (str) format of the image manifest and metadata (default "oci")
+
+    :returns: JSON results
     """
-    data = {key: value for key, value in kwargs.items()}
-    data["container"] = container
-    # just a bit of debugging
-    for key, value in data.items():
-        print(f"{key=}, {value=}")
-    response = session.post(f"{api_endpoint}/commit", params=data)
+    parameters = {key: value for key, value in kwargs.items()}
+    parameters["container"] = container
+    response = session.post(f"{api_endpoint}/commit", params=parameters)
     if response.status_code == 200:
         return "No Error"
     else:
         return response.json()
+
+
+def health_check(container: str) -> str:
+    """Execute the defined heatlcheck and return information about the results.
+
+    :param container: the name or ID of the container
+    :type container: str
+
+    :returns: JSON results
+    """
+    return session.get(f"{api_endpoint}/containers/{container}/healthcheck").json()
