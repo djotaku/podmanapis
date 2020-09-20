@@ -8,26 +8,25 @@ from podmanapi import api_endpoint
 session = requests_unixsocket.Session()
 
 
-def commit(container: str, repo: str = None, tag: str = None, comment: str = None, author: str = None,
-           pause: bool = None, changes: List[str] = None, a_format: str = None) -> str:
+def commit(container: str, **kwargs) -> str:
     """Create a new image form a container.
 
     :param container: the name or ID of a container
     :type container: str
-    :param repo: (optional) the repository name for the created image
-    :type repo: str
-    :param tag: (optional) tag name for the craeted image
-    :type tag: str
-    :param comment: (optional) commit message
-    :type comment: str
-    :param author: (optional) author of the image
-    :type author: str
-    :param pause: (optional) pause the container before committing it.
-    :type pause: bool
-    :param changes: (optional) instructions to apply while committing in Dockerfile format (i.e. "CMD=/bin/foo")
-    :type changes: List[str]
-    :param a_format: (optional) format of the image manifest and metadata (default "oci")
-    :type a_format: str
-    """
 
-    #response = session.post(f"{api_endpoint}/libpod/commit", )
+    The following are optional parameters:
+    repo: (str) the repository name for the created image
+    tag: (str) tag name for the created image
+    comment: (str) commit message
+    author: (str) author of the image
+    pause: (bool) pause the container before committing it.
+    changes: (List[str]) instructions to apply while committing in Dockerfile format (i.e. "CMD=/bin/foo")
+    format: (str) format of the image manifest and metadata (default "oci")
+    """
+    data = {key: value for key, value in kwargs.items()}
+    data["container"] = container
+    response = session.post(f"{api_endpoint}/libpod/commit", data)
+    if response.status_code == 200:
+        return "No Error"
+    else:
+        return response.json()
