@@ -1,6 +1,7 @@
 """API functions related to containers."""
 
 import requests_unixsocket
+import json
 
 from podmanapi import api_endpoint
 
@@ -28,7 +29,7 @@ def commit(container: str, **kwargs) -> str:
     parameters["container"] = container
     response = session.post(f"{api_endpoint}/commit", params=parameters)
     if response.status_code == 200:
-        return "No Error"
+        return "{'response': 200}"
     else:
         return response.json()
 

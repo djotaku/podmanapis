@@ -23,4 +23,8 @@ def image_exists(container: str) -> str:
 
     :returns: JSON with information
     """
-    return session.get(f"{api_endpoint}/images/{container}/exists").json()
+    response = session.get(f"{api_endpoint}/images/{container}/exists")
+    if response.status_code == 204:
+        return "{'response': 204}"
+    else:
+        return response.json()
