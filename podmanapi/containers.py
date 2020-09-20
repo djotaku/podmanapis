@@ -26,7 +26,7 @@ def commit(container: str, **kwargs) -> str:
     data = {key: value for key, value in kwargs.items()}
     data["container"] = container
     # just a bit of debugging
-    for key, value in data:
+    for key, value in data.items():
         print(f"{key=}, {value=}")
     response = session.post(f"{api_endpoint}/libpod/commit", data)
     if response.status_code == 200:
