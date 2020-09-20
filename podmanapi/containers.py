@@ -28,7 +28,7 @@ def commit(container: str, **kwargs) -> str:
     # just a bit of debugging
     for key, value in data.items():
         print(f"{key=}, {value=}")
-    response = session.post(f"{api_endpoint}/commit", data)
+    response = session.post(f"{api_endpoint}/commit", data=data)
     if response.status_code == 200:
         return "No Error"
     else:
